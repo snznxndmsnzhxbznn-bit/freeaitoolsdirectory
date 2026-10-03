@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090b">
+<meta name="description" content="NOVAFLUX — a luxury AI website prompt library and website service studio.">
+<title>NOVAFLUX — Luxury AI Website Prompt Library</title>
+<style>
+:root{
+  --bg:#05060a; --bg2:#0a0c12; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.12); --gold:#9b8cff; --gold2:#c2baff;
+  --cream:#f4f5fb; --muted:#a5a8b7; --white:#ffffff; --green:#79e6c4;
+  --cyan:#58d9ff; --blue:#6e7cff; --shadow:0 28px 90px rgba(0,0,0,.52); --radius:24px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(circle at 15% 0%,rgba(118,103,255,.13),transparent 30%),
+ radial-gradient(circle at 85% 18%,rgba(74,78,160,.10),transparent 28%),
+ var(--bg);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 20% 25%,rgba(111,124,255,.10),transparent 22%),radial-gradient(circle at 80% 65%,rgba(88,217,255,.08),transparent 20%)}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,9,11,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em;font-size:19px}.mark{width:34px;height:34px;border:1px solid var(--gold);display:grid;place-items:center;border-radius:10px;color:var(--gold);font-family:Georgia,serif;font-style:italic}
+.gold{color:var(--gold)}.navlinks{display:flex;gap:28px;color:#c5c0b7;font-size:13px}.navlinks a:hover{color:var(--gold2)}
+.navcta,.btn{border:1px solid var(--line);background:rgba(255,255,255,.03);padding:12px 16px;border-radius:999px;font-weight:700;font-size:13px}
+.navcta{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#14120e;border:0}
+.menu{display:none;background:none;border:0;color:var(--cream);font-size:25px}
+.hero{padding:92px 0 74px;display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-weight:800}.eyebrow i{display:inline-block;width:7px;height:7px;background:var(--gold);border-radius:50%;margin-right:8px;box-shadow:0 0 18px var(--gold)}
+h1{font:500 clamp(48px,7vw,88px)/.96 Georgia,serif;letter-spacing:-.055em;margin:20px 0}.hero h1 em,.serif{font-style:italic}
+.hero p{font-size:18px;color:var(--muted);max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;gap:10px}.btn.primary{background:linear-gradient(135deg,var(--gold2),#7568ff);color:#0a0a10;border:0;box-shadow:0 12px 35px rgba(118,103,255,.18)}.btn.ghost:hover{border-color:var(--gold);color:var(--gold2)}
+.hero-art{min-height:470px;border:1px solid var(--line);border-radius:32px;position:relative;overflow:hidden;background:radial-gradient(circle at 70% 20%,rgba(88,217,255,.12),transparent 28%),linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));backdrop-filter:blur(22px);box-shadow:var(--shadow)}
+.hero-art:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(91,218,255,.34),transparent 62%);filter:blur(8px);top:-80px;right:-90px}
+.lux-card{position:absolute;left:9%;right:9%;top:12%;bottom:12%;border:1px solid rgba(194,186,255,.28);border-radius:24px;padding:25px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 24px 70px rgba(0,0,0,.28);display:flex;flex-direction:column;justify-content:space-between}
+.lux-top{display:flex;justify-content:space-between;color:#aaa;font-size:10px;letter-spacing:.16em}.lux-title{font:italic 55px Georgia,serif;color:var(--gold2);line-height:.95}.lux-lines{display:grid;gap:8px}.lux-lines span{height:1px;background:linear-gradient(90deg,var(--gold),transparent)}.lux-pill{display:inline-flex;width:max-content;border:1px solid var(--line);padding:7px 10px;border-radius:99px;color:#c9c2b6;font-size:10px}
+.stats{display:flex;gap:42px;margin-top:50px}.stat b{display:block;font:600 28px Georgia,serif;color:var(--white)}.stat span{color:#807c75;font-size:11px;text-transform:uppercase;letter-spacing:.12em}
+.section{padding:100px 0}.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:35px}.kicker{font-size:10px;letter-spacing:.2em;color:var(--gold);font-weight:800}.section h2{font:500 clamp(38px,5vw,64px)/.98 Georgia,serif;letter-spacing:-.045em;margin:10px 0 0}.section h2 em{color:#bdb6aa}.section-head>p{max-width:450px;color:var(--muted);margin:0}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:240px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:16px;padding:0 16px;display:flex;align-items:center}.search input{width:100%;padding:15px;border:0;outline:0;background:none;color:var(--cream);font:inherit}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;color:#aaa59c;border-radius:99px;padding:10px 13px;cursor:pointer}.filter.active,.filter:hover{background:rgba(118,103,255,.12);color:var(--gold2);border-color:rgba(118,103,255,.35)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));backdrop-filter:blur(22px) saturate(145%);border:1px solid var(--line);border-radius:22px;padding:22px;min-height:265px;display:flex;flex-direction:column;transition:.25s}.card:hover{transform:translateY(-4px);border-color:rgba(118,103,255,.4);box-shadow:0 18px 45px rgba(0,0,0,.28)}.tag{font-size:9px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}.card h3{font:500 28px Georgia,serif;margin:20px 0 8px}.card p{color:#9e9a92;font-size:13px;margin:0}.card-bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:22px}.card button{background:none;border:0;color:var(--gold2);font-weight:800;cursor:pointer}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;color:#756f65;font-size:11px;letter-spacing:.16em;white-space:nowrap;padding:15px 0}.marquee span{display:inline-block;margin-right:42px}.marquee b{color:var(--gold)}
+.generator{background:linear-gradient(180deg,rgba(118,103,255,.04),transparent)}
+.gen{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.panel{border:1px solid var(--line);background:rgba(255,255,255,.045);backdrop-filter:blur(18px);border-radius:24px;padding:24px}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px}.field.wide{grid-column:1/-1}.field label{font-size:10px;color:#8f8a80;letter-spacing:.12em;text-transform:uppercase}.field input,.field select{width:100%;background:#0c0e11;border:1px solid var(--line);color:var(--cream);padding:13px;border-radius:12px;outline:0}.output{min-height:100%;display:flex;flex-direction:column}.outputbar{display:flex;justify-content:space-between;color:#817b72;font-size:10px;letter-spacing:.15em}.outputbar button{background:transparent;border:1px solid var(--line);color:var(--gold2);border-radius:8px;padding:7px 10px}.output pre{white-space:pre-wrap;color:#c9cbda;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto;margin:22px 0 0}
+.services{background:linear-gradient(180deg,#0b0c0f,#08090b)}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.service{border:1px solid var(--line);border-radius:24px;padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.028));backdrop-filter:blur(22px);min-height:300px;display:flex;flex-direction:column}.service.featured{background:linear-gradient(145deg,#12132a,#0e1013);border-color:rgba(118,103,255,.4)}.service .num{color:var(--gold);font-size:10px;letter-spacing:.15em}.service h3{font:500 38px Georgia,serif;margin:55px 0 8px}.service p{color:var(--muted)}.service strong{margin-top:auto;color:var(--gold2)}.service a{margin-top:12px;color:#c5c0ff;font-size:13px;font-weight:800}
+.demo-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.demo{min-height:330px;border-radius:24px;border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(18px)}.demo.large{min-height:420px}.demo:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,rgba(118,103,255,.35),transparent 30%),linear-gradient(135deg,#15171b,#08090b)}.demo:after{content:"";position:absolute;inset:25px;border:1px solid rgba(255,255,255,.12);border-radius:18px}.demo-content{position:absolute;z-index:2;inset:auto 28px 28px}.demo small{color:var(--gold);letter-spacing:.16em;font-size:9px}.demo h3{font:500 40px Georgia,serif;margin:8px 0}.demo p{color:#aaa;font-size:12px}.demo .view{display:inline-block;margin-top:10px;border:1px solid var(--line);border-radius:99px;padding:9px 13px;font-size:11px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.price{border:1px solid var(--line);border-radius:22px;padding:26px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));backdrop-filter:blur(20px)}.price.featured{background:linear-gradient(145deg,rgba(118,103,255,.12),rgba(255,255,255,.025));border-color:rgba(118,103,255,.35)}.price h3{font:500 38px Georgia,serif;margin:20px 0 8px}.price strong{font-size:23px;color:var(--gold2)}.price p{color:var(--muted);font-size:13px}.price a{display:inline-block;margin-top:18px;color:var(--gold2);font-size:13px;font-weight:800}
+.contact{display:grid;grid-template-columns:1fr .8fr;gap:30px;align-items:center}.contact h2{font:500 clamp(42px,6vw,72px)/.96 Georgia,serif;margin:12px 0}.contact p{color:var(--muted);max-width:520px}.contact-card{border:1px solid var(--line);border-radius:24px;padding:25px;background:linear-gradient(145deg,#121419,#0b0d10)}.contact-row{display:flex;justify-content:space-between;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.07);gap:10px}.contact-row small{color:#777;letter-spacing:.12em;font-size:9px}.contact-row strong{color:#e7e8f4;font-size:13px}.contact-card .btn{margin-top:20px;width:100%;justify-content:center}
+footer{padding:30px 0 50px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;color:#777;font-size:11px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;background:#b8b0ff;color:#0a0a10;padding:11px 16px;border-radius:99px;font-weight:800;font-size:12px;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);display:none;place-items:center;z-index:80;padding:18px}.modal.show{display:grid}.modalbox{width:min(760px,100%);max-height:88vh;overflow:auto;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.028));backdrop-filter:blur(22px);border:1px solid rgba(118,103,255,.3);border-radius:25px;padding:25px;box-shadow:var(--shadow)}.modalhead{display:flex;justify-content:space-between;gap:15px}.close{background:none;border:1px solid var(--line);color:var(--cream);border-radius:10px;padding:8px 11px}.prompttext{white-space:pre-wrap;color:#c9cbda;background:#0a0c0f;border:1px solid var(--line);border-radius:16px;padding:18px;font:12px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:18px}
+@media(max-width:900px){.navlinks{display:none}.menu{display:block}.navcta{display:none}.hero{grid-template-columns:1fr;padding-top:60px}.hero-art{min-height:360px}.cards,.service-grid,.pricing-grid{grid-template-columns:1fr 1fr}.gen,.contact,.demo-grid{grid-template-columns:1fr}.section{padding:72px 0}.section-head{display:block}.section-head>p{margin-top:16px}.stats{gap:20px;flex-wrap:wrap}}
+@media(max-width:620px){.wrap{width:min(100% - 24px,1180px)}.nav-inner{height:66px}.hero h1{font-size:49px}.hero p{font-size:16px}.lux-title{font-size:42px}.cards,.service-grid,.pricing-grid,.form{grid-template-columns:1fr}.field.wide{grid-column:auto}.stats{display:grid;grid-template-columns:1fr 1fr}.section{padding:60px 0}.section h2{font-size:43px}.demo.large{min-height:330px}.footer{display:grid}.nav-inner .brand{font-size:17px}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner wrap">
+<a class="brand" href="#top"><span class="mark">P</span><span>NOVA<span class="gold">FLUX</span></span></a>
+<nav class="navlinks"><a href="#library">Library</a><a href="#generator">Generator</a><a href="#demos">Demos</a><a href="#services">Services</a><a href="#payment">Payment</a><a href="#contact">Contact</a></nav>
+<a class="navcta" href="#contact">Build my website ↗</a><button class="menu" aria-label="Menu">☰</button>
+</div></header>
+
+<main id="top">
+<section class="hero wrap">
+<div>
+<div class="eyebrow"><i></i> AI PROMPT & DIGITAL EXPERIENCE STUDIO</div>
+<h1>Make AI build<br><em>beautiful websites.</em></h1>
+<p>A premium prompt library and digital experience studio for people who want better AI output—and better websites. Choose a direction, generate the prompt, or let us build the final experience.</p>
+<div class="actions"><a class="btn primary" href="#library">Explore the library ↓</a><a class="btn" href="#demos">See live demos ↗</a></div>
+<div class="stats"><div class="stat"><b>1,000+</b><span>Prompt patterns</span></div><div class="stat"><b>12</b><span>Industries</span></div><div class="stat"><b>10</b><span>Visual directions</span></div><div class="stat"><b>01</b><span>Studio</span></div></div>
+</div>
+<div class="hero-art"><div class="lux-card"><div class="lux-top"><span>NOVAFLUX / 001</span><span>EST. 2026</span></div><div><span class="lux-pill">LUXURY DIGITAL SYSTEM</span><div class="lux-title">AI prompts.<br>Websites.<br><em>Built better.</em></div></div><div class="lux-lines"><span></span><span style="width:72%"></span><span style="width:48%"></span></div></div></div>
+</section>
+
+<div class="marquee"><div class="wrap"><span>WEBSITE PROMPTS <b>✦</b></span><span>UI / UX SYSTEMS <b>✦</b></span><span>3D & MOTION <b>✦</b></span><span>CONVERSION <b>✦</b></span><span>AI WORKFLOWS <b>✦</b></span><span>WEBSITE SERVICES <b>✦</b></span></div></div>
+
+<section id="library" class="section wrap">
+<div class="section-head"><div><span class="kicker">01 / LIBRARY</span><h2>Find the prompt<br><em>that fits the job.</em></h2></div><p>Original, AI-agnostic instruction systems. Search by industry, visual direction or outcome, then copy a production-ready prompt.</p></div>
+<div class="toolbar"><div class="search"><span>⌕</span><input id="search" placeholder="Search prompts, industries, styles…"></div><div id="filters" class="filters"></div></div>
+<div id="cards" class="cards"></div>
+</section>
+
+<section id="generator" class="section generator">
+<div class="wrap"><div class="section-head"><div><span class="kicker">02 / GENERATOR</span><h2>Your business.<br><em>Your master prompt.</em></h2></div><p>Fill in the essentials. NOVAFLUX assembles a professional website brief you can paste into almost any capable AI coding tool.</p></div>
+<div class="gen">
+<form id="genForm" class="panel form">
+<div class="field"><label>Business name</label><input name="name" required placeholder="e.g. Atelier 27"></div>
+<div class="field"><label>Business type</label><select name="type"><option>Premium Business</option><option>Real Estate</option><option>Construction</option><option>Wedding / Photography</option><option>Fashion</option><option>Restaurant</option><option>Agency</option><option>Portfolio</option><option>E-commerce</option><option>Local Business</option></select></div>
+<div class="field"><label>Location</label><input name="city" placeholder="e.g. Kolkata, India"></div>
+<div class="field"><label>Visual direction</label><select name="style"><option>Dark Luxury</option><option>Luxury Editorial</option><option>Cinematic</option><option>Minimal</option><option>Futuristic 3D</option><option>Glassmorphism</option><option>Cyber</option></select></div>
+<div class="field wide"><label>Services / products</label><input name="services" placeholder="e.g. Architecture, interiors, turnkey construction"></div>
+<div class="field wide"><label>Main call to action</label><input name="cta" placeholder="e.g. Book a consultation"></div>
+<div class="wide actions"><button class="btn primary" type="submit">Generate master prompt ✦</button><button class="btn" type="reset">Reset</button></div>
+</form>
+<div class="panel output"><div class="outputbar"><span>GENERATED PROMPT</span><button id="copyGenerated" disabled>Copy</button></div><pre id="generated">Fill the form to generate your AI-agnostic master prompt.</pre></div>
+</div></div>
+</section>
+
+<section id="demos" class="section wrap">
+<div class="section-head"><div><span class="kicker">03 / LIVE DEMOS</span><h2>Show the work.<br><em>Let the visuals sell.</em></h2></div><p>Show your real client-ready builds here. Each demo should open a polished live website. Each card is designed to make the service feel tangible before the visitor contacts you.</p></div>
+<div class="demo-grid">
+<article class="demo large"><div class="demo-content"><small>REAL ESTATE / LUXURY</small><h3>Axis Habitat</h3><p>Editorial property presentation with cinematic imagery, location storytelling and enquiry flow.</p><a class="view" href="#contact">Open demo ↗</a></div></article>
+<div style="display:grid;gap:16px">
+<article class="demo"><div class="demo-content"><small>WEDDING / STUDIO</small><h3>Frame & Vows</h3><p>Romantic portfolio system with immersive galleries.</p><a class="view" href="#contact">Open demo ↗</a></div></article>
+<article class="demo"><div class="demo-content"><small>FASHION / EDITORIAL</small><h3>NOIR / 27</h3><p>Dark luxury storefront with campaign-led storytelling.</p><a class="view" href="#contact">Open demo ↗</a></div></article>
+</div>
+</div>
+</section>
+
+
+<section id="prompt-pricing" class="section wrap">
+<div class="section-head"><div><span class="kicker">04 / PROMPT ACCESS</span><h2>Useful prompts.<br><em>One-time purchase.</em></h2></div><p>Simple prompt packs for creators, marketers and businesses. Tap UPI on supported phones or order through WhatsApp.</p></div>
+<div class="pricing-grid">
+<article class="price"><span class="kicker">STARTER</span><h3>50 Prompts</h3><strong>₹299</strong><p>50 premium prompts, core templates and instant access.</p><a href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX%20Starter&cu=INR&am=299&tn=Prompt%20Pack%20Starter">Pay ₹299 via UPI →</a></article>
+<article class="price featured"><span class="kicker">PRO</span><h3>200+ Prompts</h3><strong>₹599</strong><p>200+ prompts, templates, updates and priority WhatsApp support.</p><a href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX%20Pro&cu=INR&am=599&tn=Prompt%20Pack%20Pro">Pay ₹599 via UPI →</a></article>
+<article class="price"><span class="kicker">BUSINESS</span><h3>Custom Pack</h3><strong>₹1,499</strong><p>Custom prompt pack, setup guidance and white-label use for business workflows.</p><a href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX%20Business&cu=INR&am=1499&tn=Prompt%20Pack%20Business">Pay ₹1,499 via UPI →</a></article>
+</div>
+</section>
+
+<section id="services" class="section services"><div class="wrap">
+<div class="section-head"><div><span class="kicker">05 / SERVICES</span><h2>Don't just get a prompt.<br><em>Get the website.</em></h2></div><p>Turn the concept into a polished client-ready website. Strategy, visual system, responsive build and launch support.</p></div>
+<div class="service-grid">
+<article class="service"><span class="num">01 / STARTER</span><h3>Starter</h3><p>Clean, responsive landing page for a new offer, creator or local business.</p><strong>₹4,999</strong><a href="#contact">Request a quote →</a></article>
+<article class="service featured"><span class="num">02 / POPULAR</span><h3>Business Pro</h3><p>Multi-section premium website with strong visual hierarchy, CTA flow and mobile polish.</p><strong>₹9,999</strong><a href="#contact">Request a quote →</a></article>
+<article class="service"><span class="num">03 / SIGNATURE</span><h3>Signature</h3><p>Custom 3D, cinematic motion, advanced interactions and a bespoke visual direction.</p><strong>₹19,999+</strong><a href="#contact">Request a quote →</a></article>
+</div>
+</div></section>
+
+<section id="pricing" class="section wrap">
+<div class="section-head"><div><span class="kicker">06 / ACCESS</span><h2>Prompt access.<br><em>Clear pricing.</em></h2></div><p>Start with prompt packs or move directly to a finished website. Every purchase has a clear next step.</p></div>
+<div class="pricing-grid">
+<article class="price"><span class="kicker">LIBRARY</span><h3>Free</h3><strong>₹0</strong><p>Browse prompts, generate briefs and explore the workflow.</p><a href="#library">Explore →</a></article>
+<article class="price featured"><span class="kicker">PRO PACKS</span><h3>Coming soon</h3><strong>₹—</strong><p>Curated advanced prompt collections and industry systems.</p><a href="#contact">Join waitlist →</a></article>
+<article class="price"><span class="kicker">DONE FOR YOU</span><h3>Custom</h3><strong>Quote</strong><p>Website strategy, design, build, animation and launch support.</p><a href="#contact">Start a project →</a></article>
+</div>
+</section>
+
+
+<section id="payment" class="section wrap">
+<div class="section-head"><div><span class="kicker">05 / QUICK PAYMENT</span><h2>Choose a service.<br><em>Pay or enquire.</em></h2></div><p>One-tap WhatsApp enquiry or UPI payment from a supported mobile device.</p></div>
+<div class="pricing-grid">
+<article class="price"><span class="kicker">STARTER</span><h3>Starter</h3><strong>₹4,999</strong><p>Premium landing page, responsive layout and conversion-focused sections.</p><a href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX%20Starter&am=4999&cu=INR">Pay ₹4,999 via UPI →</a></article>
+<article class="price featured"><span class="kicker">BUSINESS PRO</span><h3>Business Pro</h3><strong>₹9,999</strong><p>Multi-section business website with premium visual system and mobile polish.</p><a href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX%20Business%20Pro&am=9999&cu=INR">Pay ₹9,999 via UPI →</a></article>
+<article class="price"><span class="kicker">SIGNATURE</span><h3>Signature</h3><strong>₹19,999+</strong><p>Custom cinematic/3D experience, advanced interactions and bespoke direction.</p><a href="https://wa.me/917586845249?text=I%20want%20a%20Signature%20website" target="_blank" rel="noopener">Request Signature quote →</a></article>
+</div>
+</section>
+
+<section id="contact" class="section wrap contact">
+<div><span class="kicker">07 / START A PROJECT</span><h2>Have a business?<br><em>Let's make it unforgettable.</em></h2><p>Replace the placeholder details with your real WhatsApp, email and UPI information before launch. The structure is ready for your brand.</p></div>
+<div class="contact-card">
+<div class="contact-row"><small>WHATSAPP</small><strong id="waText">+91 7586845249</strong></div>
+<div class="contact-row"><small>EMAIL</small><strong>somruilmondal@okicici</strong></div>
+<div class="contact-row"><small>UPI</small><strong>somruilmondal@okicici</strong></div>
+<div class="actions" style="margin-top:20px">
+<a class="btn primary" id="waLink" href="https://wa.me/917586845249" target="_blank" rel="noopener">Message on WhatsApp ↗</a>
+<a class="btn" id="upiLink" href="upi://pay?pa=somruilmondal@okicici&pn=NOVAFLUX&cu=INR">Pay via UPI ↗</a>
+</div>
+<p style="font-size:10px;color:#6f6a62;margin-top:12px">UPI button opens a compatible UPI app on supported phones. The final amount is selected on the payment screen.</p>
+</div>
+</section>
+</main>
+
+<footer class="wrap"><div class="brand"><span class="mark">P</span><span>NOVA<span class="gold">FLUX</span></span></div><span>© 2026 NOVAFLUX</span><a class="gold" href="#top">Back to top ↑</a></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><div><span class="kicker" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0;font:500 38px Georgia,serif"></h2><p id="modalDesc" style="color:#999"></p></div><button class="close" id="closeModal">Close</button></div><div class="prompttext" id="modalPrompt"></div><div class="actions"><button class="btn primary" id="copyPrompt">Copy prompt ✦</button><a class="btn" href="#contact" id="modalService">Build this website ↗</a></div></div></div>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+const prompts=[
+{name:"Luxury Business",tag:"BUSINESS / LUXURY",desc:"A high-end business website with editorial typography, restrained motion and premium conversion flow.",style:"Dark Luxury",prompt:`You are an expert product designer and frontend developer. Create a premium website for [BUSINESS_NAME], a [BUSINESS_TYPE] in [CITY].\\n\\nVISUAL DIRECTION\\nUse an obsidian/dark luxury palette with warm champagne-gold accents, refined serif display typography, clean sans-serif UI text, generous negative space, subtle grain and restrained glow. The result must feel expensive, editorial and trustworthy—not flashy.\\n\\nSTRUCTURE\\nHero → credibility → services → featured work → process → testimonials → CTA → contact/footer.\\n\\nUX\\nMobile-first, clear hierarchy, strong CTA repetition, accessible contrast, fast scanning and polished micro-interactions.\\n\\nMOTION\\nUse subtle reveal, hover and scroll transitions. Motion must support hierarchy and never reduce readability.\\n\\nTECHNICAL\\nResponsive across phone/tablet/desktop, semantic HTML, optimized media, SEO metadata, accessible controls and clean maintainable code.\\n\\nDO NOT\\nDo not use generic templates, random gradients, excessive rounded cards, fake testimonials, lorem ipsum or clutter.`},
+{name:"Real Estate",tag:"REAL ESTATE",desc:"Cinematic property presentation designed around trust, visual storytelling and enquiries.",style:"Luxury Editorial",prompt:`Create a premium real-estate website for [BUSINESS_NAME] in [CITY].\\n\\nGOAL\\nTurn property browsing into qualified enquiries.\\n\\nDESIGN\\nDark editorial base, warm neutral/gold accents, large cinematic property imagery, elegant serif headlines and precise sans-serif interface typography.\\n\\nSECTIONS\\nHero property statement → featured properties → location/value story → amenities → gallery → developer/agent credibility → enquiry CTA → contact.\\n\\nINTERACTIONS\\nSmooth image reveals, subtle parallax, filterable property cards and refined hover states.\\n\\nCONVERSION\\nMake WhatsApp/call/enquiry actions obvious without looking like an aggressive sales page.\\n\\nQUALITY\\nMobile-first, responsive, accessible, SEO-friendly, fast and production-ready. Avoid stock-template appearance.`},
+{name:"Wedding Studio",tag:"WEDDING / PHOTO",desc:"Romantic cinematic portfolio with immersive galleries and enquiry-first storytelling.",style:"Cinematic",prompt:`Create an emotionally cinematic website for [BUSINESS_NAME], a wedding photography/film studio serving [CITY].\\n\\nART DIRECTION\\nUse deep charcoal, ivory and restrained champagne accents. Combine elegant serif headlines with minimal UI typography. Prioritize full-bleed imagery and quiet luxury.\\n\\nFLOW\\nEmotional hero → selected stories → signature galleries → services → couple testimonials → studio story → availability CTA → contact.\\n\\nMOTION\\nSlow image reveals, gentle transitions and scroll storytelling. Never use distracting effects.\\n\\nCONVERSION\\nPrimary CTA: [CTA]. Add WhatsApp and enquiry paths.\\n\\nTECHNICAL\\nResponsive gallery behavior, optimized images, semantic structure, accessibility, SEO and excellent mobile performance.`},
+{name:"Construction",tag:"CONSTRUCTION",desc:"Authority-led company site combining projects, services and trust signals.",style:"Dark Premium",prompt:`Create a premium construction/company website for [BUSINESS_NAME] in [CITY].\\n\\nPOSITIONING\\nMake the company feel established, capable and trustworthy.\\n\\nDESIGN\\nObsidian background, warm metallic accent, architectural grid, strong photography, disciplined spacing and bold typography.\\n\\nSECTIONS\\nHero → company proof → capabilities → projects → process → certifications/trust → testimonials → enquiry CTA → contact.\\n\\nUX\\nVisitors must understand what the company does within seconds and reach an enquiry action quickly.\\n\\nTECHNICAL\\nResponsive, accessible, SEO-ready, fast-loading and easy to maintain. No generic construction-template styling.`},
+{name:"Fashion Editorial",tag:"FASHION",desc:"Campaign-led luxury fashion presentation with editorial rhythm.",style:"Luxury Editorial",prompt:`Design a fashion-forward editorial website for [BUSINESS_NAME].\\n\\nAESTHETIC\\nDark gallery-like canvas, ivory typography and controlled champagne accents. Large imagery, asymmetric composition, magazine-like spacing and confident type scale.\\n\\nFLOW\\nCampaign hero → collection stories → product/editorial grid → brand philosophy → featured piece → CTA → footer.\\n\\nINTERACTION\\nImage hover movement, soft reveals, elegant page transitions and responsive art direction.\\n\\nRULE\\nThe visual system must feel custom art-directed, not like a generic ecommerce template.`},
+{name:"Restaurant",tag:"RESTAURANT",desc:"Atmospheric restaurant website focused on menu, experience and reservations.",style:"Cinematic",prompt:`Create an atmospheric premium restaurant website for [BUSINESS_NAME] in [CITY].\\n\\nMOOD\\nDark warm palette, cinematic food/interior imagery, refined typography and subtle gold/bronze accents.\\n\\nFLOW\\nHero experience → signature dishes → story → menu preview → ambience/gallery → reviews → reservation CTA → location/contact.\\n\\nCONVERSION\\nMake [CTA] prominent. Include call, WhatsApp and reservation paths.\\n\\nTECHNICAL\\nMobile-first, fast, accessible, SEO-friendly and visually strong without sacrificing usability.`},
+{name:"Agency",tag:"CREATIVE AGENCY",desc:"Sharp studio website designed to communicate capability and convert leads.",style:"Futuristic 3D",prompt:`Create a distinctive digital agency website for [BUSINESS_NAME].\\n\\nPOSITIONING\\nThe agency should feel modern, capable and selective.\\n\\nVISUALS\\nUse a dark premium foundation with one controlled accent color, sophisticated type hierarchy, large case-study visuals and restrained 3D or motion moments.\\n\\nSTRUCTURE\\nHero → capabilities → selected work → results → process → about → CTA → contact.\\n\\nUX\\nEvery section should answer what we do, why trust us and what to do next.\\n\\nTECHNICAL\\nResponsive, accessible, optimized and maintainable. Avoid over-designed effects that hurt performance.`},
+{name:"Local Business",tag:"LOCAL BUSINESS",desc:"Premium local-business presence that turns searches into calls and WhatsApp leads.",style:"Dark Premium",prompt:`Create a premium local-business website for [BUSINESS_NAME], serving [CITY].\\n\\nGOAL\\nConvert local visitors into calls, WhatsApp enquiries and visits.\\n\\nDESIGN\\nDark premium visual system with warm accent, authentic business imagery, strong service cards and clear local trust signals.\\n\\nSECTIONS\\nHero → services → why choose us → work/gallery → reviews → service area → CTA → contact/map.\\n\\nTRUST\\nShow years, service area, real proof and contact information clearly.\\n\\nTECHNICAL\\nMobile-first, fast, SEO-friendly, accessible and simple to update.`},
+{name:"Portfolio",tag:"PERSONAL / PORTFOLIO",desc:"Minimal luxury portfolio for a designer, creator or professional.",style:"Minimal",prompt:`Create a premium personal portfolio for [BUSINESS_NAME / PERSON_NAME].\\n\\nART DIRECTION\\nUse a restrained dark/ivory palette, elegant typography, strong case-study imagery and generous whitespace.\\n\\nFLOW\\nIntro → selected work → case studies → capabilities → about → testimonials/clients → contact.\\n\\nINTERACTION\\nSubtle cursor/hover/reveal motion. Prioritize clarity and speed.\\n\\nOUTPUT\\nThe site should feel bespoke and editorial, with no generic portfolio-template appearance.`},
+{name:"3D Experience",tag:"3D / EXPERIENCE",desc:"A cinematic interactive concept for brands that need a memorable digital experience.",style:"Futuristic 3D",prompt:`Design a premium interactive website for [BUSINESS_NAME] with a controlled 3D/cinematic visual system.\\n\\nCORE IDEA\\nCreate one memorable hero interaction, then keep the rest of the interface calm and readable.\\n\\nVISUAL SYSTEM\\nObsidian base, metallic/champagne accent, volumetric lighting cues, precise typography and architectural depth.\\n\\nSECTIONS\\nHero experience → story → product/service → proof → interactive feature → CTA → contact.\\n\\nPERFORMANCE\\nProvide graceful fallbacks on lower-powered mobile devices. Avoid heavy effects that block interaction or slow the page.`},
+{name:"SaaS Landing",tag:"SAAS / PRODUCT",desc:"Conversion-focused product landing page with strong hierarchy and product proof.",style:"Minimal",prompt:`Create a premium SaaS/product landing page for [BUSINESS_NAME].\\n\\nSTRUCTURE\\nHero value proposition → product visual → key outcomes → feature system → workflow → proof → pricing/CTA → FAQ → footer.\\n\\nDESIGN\\nDark premium foundation with restrained accent color, crisp typography, product UI mockups and subtle motion.\\n\\nCONVERSION\\nThe first screen must explain what the product does, who it is for and the next action.\\n\\nTECHNICAL\\nResponsive, accessible, SEO-friendly, fast and production-ready.`},
+{name:"Premium E-commerce",tag:"E-COMMERCE",desc:"High-end commerce experience balancing product desire with usability.",style:"Dark Luxury",prompt:`Create a premium ecommerce website for [BUSINESS_NAME].\\n\\nVISUALS\\nLuxury editorial design, strong product photography, dark neutral foundation, warm accent and refined typography.\\n\\nFLOW\\nCampaign hero → featured products → collection story → product grid → social proof → brand story → CTA/footer.\\n\\nUX\\nClear product hierarchy, filters, product discovery, cart path and mobile-friendly interactions.\\n\\nRULE\\nDo not sacrifice usability for visual effects. Keep the shopping journey obvious and fast.`}
+];
+
+const cats=["ALL","BUSINESS","REAL ESTATE","WEDDING / PHOTO","CONSTRUCTION","FASHION","RESTAURANT","CREATIVE AGENCY","LOCAL BUSINESS","PERSONAL / PORTFOLIO","3D / EXPERIENCE","SAAS / PRODUCT","E-COMMERCE"];
+let active="ALL";
+const cards=document.getElementById("cards"),filters=document.getElementById("filters"),search=document.getElementById("search");
+cats.forEach(c=>{const b=document.createElement("button");b.className="filter"+(c==="ALL"?" active":"");b.textContent=c;b.onclick=()=>{active=c;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};filters.appendChild(b)});
+function render(){
+ const q=search.value.toLowerCase();
+ const list=prompts.filter(p=>(active==="ALL"||p.tag===active)&&(p.name+" "+p.tag+" "+p.desc).toLowerCase().includes(q));
+ cards.innerHTML=list.map((p,i)=>`<article class="card"><span class="tag">${p.tag}</span><h3>${p.name}</h3><p>${p.desc}</p><div class="card-bottom"><span style="color:#777;font-size:10px">${p.style}</span><button data-i="${prompts.indexOf(p)}">View prompt ↗</button></div></article>`).join("");
+ cards.querySelectorAll("button").forEach(b=>b.onclick=()=>openPrompt(prompts[+b.dataset.i]));
+}
+search.oninput=render;render();
+
+const modal=document.getElementById("modal");
+function openPrompt(p){document.getElementById("modalTag").textContent=p.tag;document.getElementById("modalTitle").textContent=p.name;document.getElementById("modalDesc").textContent=p.desc;document.getElementById("modalPrompt").textContent=p.prompt;modal.classList.add("show");document.getElementById("copyPrompt").onclick=()=>copyText(p.prompt)}
+document.getElementById("closeModal").onclick=()=>modal.classList.remove("show");modal.onclick=e=>{if(e.target===modal)modal.classList.remove("show")};
+async function copyText(t){await navigator.clipboard.writeText(t);showToast()}
+function showToast(){const t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1500)}
+document.getElementById("genForm").onsubmit=e=>{
+ e.preventDefault();const f=new FormData(e.target), name=f.get("name"),type=f.get("type"),city=f.get("city")||"[CITY]",style=f.get("style"),services=f.get("services")||"[SERVICES]",cta=f.get("cta")||"[CTA]";
+ const t=`You are an expert product designer and frontend developer. Create a production-ready website for ${name}, a ${type} business serving ${city}.
+
+BUSINESS
+Name: ${name}
+Type: ${type}
+Services: ${services}
+Primary CTA: ${cta}
+
+VISUAL DIRECTION
+Use a ${style} direction with a refined, premium visual system. Prioritize typography, spacing, image art direction, hierarchy and a coherent color palette. The result must feel custom-designed rather than template-based.
+
+STRUCTURE
+Hero → trust/credibility → services or products → featured work/content → process/story → proof/testimonials → strong CTA → contact/footer.
+
+UX
+Mobile-first, responsive across phone/tablet/desktop, clear navigation, readable hierarchy, obvious conversion actions and accessible interactions.
+
+MOTION
+Use tasteful scroll reveals, hover states and micro-interactions. Motion should support storytelling and never harm usability or performance.
+
+TECHNICAL
+Use semantic HTML, maintainable CSS/JS, optimized media, SEO metadata, accessible controls, fast loading and graceful mobile fallbacks.
+
+DO NOT
+Do not use lorem ipsum, fake reviews, generic stock-template layouts, excessive gradients, excessive rounded cards, unreadable text, or decorative effects that distract from the business.
+
+FINAL QUALITY CHECK
+Before delivering, verify responsive behavior, navigation, buttons, spacing, contrast, accessibility, performance and visual consistency.`;
+ document.getElementById("generated").textContent=t;document.getElementById("copyGenerated").disabled=false;document.getElementById("copyGenerated").onclick=()=>copyText(t);
+};
+document.querySelector(".menu").onclick=()=>document.querySelector(".navlinks").style.display=document.querySelector(".navlinks").style.display==="flex"?"none":"flex";
+</script>
+</body>
+</html>
